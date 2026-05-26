@@ -1,0 +1,55 @@
+Структура (structure) / запись (record)
+
+Несколько объектов группируются в один составной
+
+Новый тип - запись
+
+Новый синтаксис Си:
+struct ИМЯ_ТИПА {
+  тип1 имя_поля1;
+  тип2 тмя_поля2;
+  .......
+};
+
+Старый синтаксис:
+typedef
+  struct имяСтруктуры   // struct имяСтруктуры
+  {
+    тип1 имя_поля1;
+    тип2 тмя_поля2;
+    .......
+  }
+  ИмяНовогоТипа;
+
+
+struct Student {
+  char family[100];
+         // описание статического массива
+  char name[100];
+  int age;
+  bool sex;
+  double avgMark;
+};
+// !!! ЗАКРЫВАЮЩАЯ ТОЧКА С ЗАПЯТОЙ
+
+typedef struct tagStudent
+  char family[100];
+         // описание статического массива
+  char name[100];
+  int age;
+  bool sex;
+  double avgMark;
+} Student;
+
+Student stud;
+stud.family = "Petrov";
+  strcpy(stud.familty, "Petrov");
+stud.name = "Ivan";
+scanf("%d", &stud.age);
+printf("%lf", stud.avgMark);
+
+
+
+
+
+

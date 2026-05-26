@@ -1,0 +1,25 @@
+Строковые константы - "......."
+Терминатор не нужен!
+
+Строка - массив char
+
+char mess[100] = "Hello from Ekaterinburg!";
+
+printf("Hello from Ekaterinburg!");
+
+'a' ~ 97
+
+char ch;
+for (ch = 'a'; ch <= 'z'; ch++) ....
+for (ch = 97; ch <= 'z'; ch++) ....
+
+
+string.h
+int strlen(char *str); - получить длину строки
+  int len = strlen(str);
+char *strcpy(char *dest, char *sour); - копировать
+...
+
+
+
+
