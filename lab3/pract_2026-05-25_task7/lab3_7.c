@@ -1,24 +1,24 @@
 #include <stdio.h>
 #include <math.h>
 
-/* Определение структуры для комплексного числа */
+// Определение структуры для комплексного числа 
 typedef struct {
-    double re;  /* действительная часть */
-    double im;  /* мнимая часть */
+    double re;  // действительная часть 
+    double im;  // мнимая часть 
 } Complex; // так называется тип данных для комплексных чисел
 
-/* Чтение комплексного числа из ввода: две вещественные части */
+// Чтение комплексного числа из ввода: две вещественные части 
 Complex cRead(void) {
     Complex z;
     if (scanf("%lf %lf", &z.re, &z.im) != 2) {
-        /* Если ввод некорректный, возвращаем 0 + 0i */
+        // Если ввод некорректный, возвращаем 0 + 0i 
         z.re = 0.0;
         z.im = 0.0;
     }
     return z;
 }
 
-/* Печать комплексного числа в виде a + bi или a - bi */
+// Печать комплексного числа в виде a + bi или a - bi 
 void cPrint(Complex z) {
     if (z.im < 0.0) {
         printf("%.6f - %.6fi", z.re, -z.im);
@@ -27,26 +27,26 @@ void cPrint(Complex z) {
     }
 }
 
-/* Сложение комплексных чисел */
+// Сложение комплексных чисел 
 Complex cAdd(Complex a, Complex b) {
     Complex r = {a.re + b.re, a.im + b.im};
     return r;
 }
 
-/* Вычитание комплексных чисел */
+// Вычитание комплексных чисел 
 Complex cSub(Complex a, Complex b) {
     Complex r = {a.re - b.re, a.im - b.im};
     return r;
 }
 
-/* Умножение комплексных чисел */
+// Умножение комплексных чисел 
 Complex cMul(Complex a, Complex b) {
     Complex r = {a.re * b.re - a.im * b.im,
                  a.re * b.im + a.im * b.re};
     return r;
 }
 
-/* Деление комплексных чисел. Если знаменатель равен нулю, возвращаем 0 */
+// Деление комплексных чисел. Если знаменатель равен нулю, возвращаем 0 
 Complex cDiv(Complex a, Complex b) {
     double denom = b.re * b.re + b.im * b.im;
     Complex r = {0.0, 0.0};
@@ -57,28 +57,28 @@ Complex cDiv(Complex a, Complex b) {
     return r;
 }
 
-/* Действительная часть комплексного числа */
+// Действительная часть комплексного числа 
 double cReal(Complex z) {
     return z.re;
 }
 
-/* Мнимая часть комплексного числа */
+// Мнимая часть комплексного числа 
 double cImag(Complex z) {
     return z.im;
 }
 
-/* Сопряжённое комплексное число: знак мнимой части меняется */
+// Сопряжённое комплексное число: знак мнимой части меняется 
 Complex cConj(Complex z) {
     Complex r = {z.re, -z.im};
     return r;
 }
 
-/* Модуль комплексного числа: sqrt(re^2 + im^2) */
+// Модуль комплексного числа: sqrt(re^2 + im^2) 
 double cAbs(Complex z) {
     return hypot(z.re, z.im);
 }
 
-/* Аргумент комплексного числа в радианах */
+// Аргумент комплексного числа в радианах 
 double cArg(Complex z) {
     return atan2(z.im, z.re);
 }
@@ -86,13 +86,13 @@ double cArg(Complex z) {
 int main(void) {
     Complex a, b;
 
-    /* Ввод двух комплексных чисел */
+    // Ввод двух комплексных чисел 
     printf("Enter real and imaginary parts of first complex number: ");
     a = cRead();
     printf("Enter real and imaginary parts of second complex number: ");
     b = cRead();
 
-    /* Вывод результатов операций */
+    // Вывод результатов операций 
     printf("a = "); cPrint(a); printf("\n");
     printf("b = "); cPrint(b); printf("\n");
     printf("a + b = "); cPrint(cAdd(a, b)); printf("\n");
@@ -107,18 +107,3 @@ int main(void) {
 
     return 0;
 }
-
-
-рубашку стирать в пакете для стирки 
-
-фрак просто проополоска чтобы небыло соли
-в ванной набрать 10-15 см воды, полвать тёплой водой штаны и фрак, затем просто повесить без отжима
-минут 5 надо полежать
-
-НЕ ОТЖИМАТЬ!!!!
-
-бабочку вместе с рубашкой 
-
-воротничёк намочить, щёткой зубной, смыть простым мылом 
-положить и самостоятельно высохнет 
-
