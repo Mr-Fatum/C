@@ -23,8 +23,8 @@ int *filter(const int *arr, int n, int *out_count, int (*pred)(int)) {
     return out;
 }
 
-// Проверяет, является ли число чётным.
-int is_even(int x) {
+
+int is_even(int x) { // Проверяет, является ли число чётным.
     return x % 2 == 0;
 }
 
@@ -40,13 +40,13 @@ int sum_digits(int x) {
     return sum;
 }
 
-// Проверяет, имеет ли число нечётную сумму цифр.
-int odd_digit_sum(int x) {
+
+int odd_digit_sum(int x) { // Проверяет, имеет ли число нечётную сумму цифр.
     return sum_digits(x) % 2 != 0;
 }
 
-// Проверяет, является ли число простым.
-int is_prime(int x) {
+
+int is_prime(int x) { // Проверяет, является ли число простым.
     if (x < 2) {
         return 0;
     }
@@ -61,8 +61,8 @@ int is_prime(int x) {
     return 1;
 }
 
-// Печатает массив целых чисел в одну строку через пробел.
-void print_array(const int *arr, int n) {
+
+void print_array(const int *arr, int n) { // Печатает массив целых чисел в одну строку через пробел.
     for (int i = 0; i < n; ++i) {
         if (i > 0) {
             putchar(' ');

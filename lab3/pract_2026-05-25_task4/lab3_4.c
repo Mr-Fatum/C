@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <math.h>
 
-// Представление точки на плоскости с координатами x и y.
-typedef struct {
+
+typedef struct { // Представление точки на плоскости с координатами x и y.
     double x;
     double y;
 } Point;
 
-// Вычисляет евклидово расстояние между двумя точками a и b.
-static double distance_between(const Point *a, const Point *b)
+
+double distance_between(const Point *a, const Point *b) // Вычисляет евклидово расстояние между двумя точками a и b.
 {
     double dx = a->x - b->x;
     double dy = a->y - b->y;
@@ -18,7 +18,7 @@ static double distance_between(const Point *a, const Point *b)
 
 // Вычисляет площадь треугольника по формуле детерминанта.
 // Это аналог формулы Герона, но без корней — используется векторное произведение двух сторон.
-static double triangle_area(const Point *a, const Point *b, const Point *c)
+double triangle_area(const Point *a, const Point *b, const Point *c)
 {
     return fabs((b->x - a->x) * (c->y - a->y) -
                 (b->y - a->y) * (c->x - a->x)) * 0.5;
@@ -26,13 +26,13 @@ static double triangle_area(const Point *a, const Point *b, const Point *c)
 
 // Проверяет, образуют ли три точки невырожденный треугольник.
 // Если площадь почти нулевая, точки лежат на одной прямой.
-static int is_triangle(const Point *a, const Point *b, const Point *c)
+int is_triangle(const Point *a, const Point *b, const Point *c)
 {
     return triangle_area(a, b, c) > 1e-12;
 }
 
-// Суммирует длины трех сторон треугольника.
-static double triangle_perimeter(const Point *a, const Point *b, const Point *c)
+
+double triangle_perimeter(const Point *a, const Point *b, const Point *c) // Суммирует длины трех сторон треугольника.
 {
     return distance_between(a, b) + distance_between(b, c) + distance_between(c, a);
 }
@@ -41,19 +41,19 @@ int main(void)
 {
     int n;
 
-    // Считываем количество точек. Если данных недостаточно или точек меньше трех.
+    printf("Enter number of points: "); 
     if (scanf("%d", &n) != 1 || n < 3) {
         return 0;
     }
 
-    // Выделяем массив точек динамически, размер зависит от введенного n.
     Point *points = malloc((size_t)n * sizeof(Point));
     if (points == NULL) {
         return 1;
     }
 
-    // Считаем координаты каждой точки.
+    printf("Enter coordinates (x y) for each point:\n");
     for (int i = 0; i < n; ++i) {
+        printf("Point %d: ", i + 1); // Подсказка для каждой точки
         if (scanf("%lf %lf", &points[i].x, &points[i].y) != 2) {
             free(points);
             return 1;
@@ -68,12 +68,12 @@ int main(void)
     for (int i = 0; i < n - 2; ++i) {
         for (int j = i + 1; j < n - 1; ++j) {
             for (int k = j + 1; k < n; ++k) {
-                // Пропускаем вырожденные треугольники, где три точки коллинеарны.
-                if (!is_triangle(&points[i], &points[j], &points[k])) {
-                    continue;
+                
+                if (!is_triangle(&points[i], &points[j], &points[k])) { // Пропускаем вырожденные треугольники, где три точки коллинеарны.
+                    continue; // переходим к следующей тройке точек
                 }
-                // Вычисляем периметр текущего треугольника.
-                double p = triangle_perimeter(&points[i], &points[j], &points[k]);
+
+                double p = triangle_perimeter(&points[i], &points[j], &points[k]);// Вычисляем периметр текущего треугольника.
                 // Сохраняем треугольник с наибольшим периметром.
                 if (p > best_perimeter) {
                     best_perimeter = p;
@@ -88,12 +88,15 @@ int main(void)
     // Если не найден ни один валидный треугольник, выводим сообщение.
     if (best_i < 0) {
         printf("No non-degenerate triangle can be formed.\n");
-    } else {
-        // Иначе печатаем координаты вершин треугольника с максимальным периметром.
-        printf("%.9g %.9g\n", points[best_i].x, points[best_i].y);
-        printf("%.9g %.9g\n", points[best_j].x, points[best_j].y);
-        printf("%.9g %.9g\n", points[best_k].x, points[best_k].y);
-        printf("Perimeter: %.9g\n", best_perimeter);
+    } else {// Иначе печатаем координаты вершин треугольника с максимальным периметром.
+        /* Формат %.2g выбрал потому, что он печатает число в наиболее компактном
+         виде: либо в обычной десятичной записи, либо в экспоненциальной, если число
+         слишком мало или слишком велико. Это удобнее, чем %lf, который всегда
+         выводит фиксированное количество десятичных знаков и может давать лишние нули.*/
+        printf("%.2g %.2g\n", points[best_i].x, points[best_i].y);
+        printf("%.2g %.2g\n", points[best_j].x, points[best_j].y);
+        printf("%.2g %.2g\n", points[best_k].x, points[best_k].y);
+        printf("Perimeter: %.2g\n", best_perimeter);
     }
 
     free(points);
