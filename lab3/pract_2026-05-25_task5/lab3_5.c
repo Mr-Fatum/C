@@ -62,7 +62,7 @@ int is_prime(int x) { // Проверяет, является ли число п
 }
 
 
-void print_array(const int *arr, int n) { // Печатает массив целых чисел в одну строку через пробел.
+void print_array(const int *arr, int n) { 
     for (int i = 0; i < n; ++i) {
         if (i > 0) {
             putchar(' ');
